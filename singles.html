@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>For the Singles</title>
+  <style>
+    
+    p {
+      color: white;
+    }
+
+    h1 {
+      color: #FF6F77;
+      font-size: 75px;
+      background-color: white;
+      border-radius: 300px;
+    }
+
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding: 50px;
+      background-color: #FF6F77;
+    }
+    a {
+      font-size: 1.2rem;
+      padding: 10px 20px;
+      margin: 20px;
+      display: inline-block;
+      text-decoration: none;
+      background-color: #ff9800;
+      color: #fff;
+      border-radius: 5px;
+    }
+    a:hover {
+      background-color: #fb8c00;
+    }
+    button {
+      font-size: 1rem;
+      padding: 8px 16px;
+      margin-top: 20px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      background-color: #8d6e63;
+      color: white;
+    }
+    button:hover {
+      background-color: #795548;
+    }
+    #countdown {
+      font-size: 1.5rem;
+      margin-top: 20px;
+      color: #d63384;
+      background-color: white;
+      border-radius: 300px;
+      display: inline-block;
+      border-radius: 50px;
+      padding: 10px 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Oh, you're single?</h1>
+  <img src="images/sad.png" alt="sad emoji">
+    <!-- Countdown timer container -->
+  <div id="countdown">Loading countdown...
+    
+  </div>
+  <p>I don't believe it... Here's a little something for you that can help before the countdown ends! Best of luck!!</p>
+  
+  <!-- Replace the YouTube link below with a video of your choice -->
+  <a href="https://www.youtube.com/watch?v=ng0ShGHiLSo" target="_blank">
+    Watch This!
+  </a>
+  
+  <br />
+  <button onclick="location.href='index.html'">Back to Home</button>
+
+  <p></p>
+  <p>Stickers from:</p>
+  <a href="https://www.flaticon.com/free-stickers/wink" title="wink stickers">Wink stickers created by Stickers - Flaticon</a>
+
+  <!-- Countdown Script -->
+  <script>
+    // Function to update the countdown timer
+    function updateCountdown() {
+      const now = new Date();
+      let currentYear = now.getFullYear();
+      
+      // Create a target date for Valentine's Day (February 14) of the current year
+      let valentineDate = new Date(currentYear, 1, 14, 0, 0, 0); // Months are 0-indexed (0=Jan, 1=Feb)
+      
+      // If today's date is past this year's Valentine's Day, count down to next year's
+      if (now > valentineDate) {
+        valentineDate = new Date(currentYear + 1, 1, 14, 0, 0, 0);
+      }
+      
+      // Calculate the remaining time in milliseconds
+      const distance = valentineDate - now;
+      
+      // Time calculations for days, hours, minutes and seconds
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      
+      // Update the countdown display
+      document.getElementById("countdown").textContent = 
+        days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+      
+      // If the countdown is over, display a message
+      if (distance < 0) {
+        clearInterval(countdownInterval);
+        document.getElementById("countdown").textContent = "Happy Valentine's Day!";
+      }
+    }
+    
+    // Update countdown immediately and then every second
+    updateCountdown();
+    const countdownInterval = setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>
